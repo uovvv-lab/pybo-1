@@ -7,10 +7,15 @@ import config
 db = SQLAlchemy()
 migrate = Migrate()
 # --------------------------------------------------------------------------- #
+app = Flask(__name__)
 
 
+# SQLAlchemy 설정
+app.config.from_object(config)
+db.init_app(app)
+migrate.init_app(app,db)
 
-# --------------------------------- [edit] ---------------------------------- #
+
 
 # --------------------------------- [edit] ---------------------------------- #
 from . import models
